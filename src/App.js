@@ -4,6 +4,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { FavoritesProvider } from "./contexts/FavoritesContext.js";
 import AllMeetupsPage from "./pages/AllMeetupsPage";
 import FavoritesPage from "./pages/Favorites";
 import NewMeetupsPage from "./pages/NewMeetup";
@@ -12,23 +13,21 @@ import Layout from "./components/layout/Layout";
 
 function App() {
   return (
-    <Router>
-      <div data-testid="app">
-        <MainNavigation />
-        <Layout>
-          <Routes>
-            <Route path="/" element={<AllMeetupsPage />} />
-            {/* All Meetups page */}
-            <Route path="/favourites" element={<FavoritesPage />} />
-            {/* Favorites page */}
-            <Route path="/create" element={<NewMeetupsPage />} />
-            {/* New Meetup page */}
-            <Route path="*" element={<Navigate to="/" replace />} />{" "}
-            {/* Redirect to '/' for any unmatched route */}
-          </Routes>
-        </Layout>
-      </div>
-    </Router>
+    <FavoritesProvider>
+      <Router>
+        <div data-testid="app">
+          <MainNavigation />
+          <Layout>
+            <Routes>
+              <Route path="/" element={<AllMeetupsPage />} />
+              <Route path="/favourites" element={<FavoritesPage />} />
+              <Route path="/create" element={<NewMeetupsPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+        </div>
+      </Router>
+    </FavoritesProvider>
   );
 }
 

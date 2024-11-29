@@ -1,36 +1,31 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useFavorites } from "../../contexts/FavoritesContext";
 import {
   ALL_MEETUP_PAGE,
   FAVORITES_PAGE,
   NEW_MEETUP_PAGE,
-} from "./../../utils/constants";
-
+} from "../../utils/constants";
 import classes from "./MainNavigation.module.css";
 
 export default function MainNavigation({ setPage }) {
+  const { favorites } = useFavorites();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  const location = useLocation(); // Get actual location
+  const location = useLocation();
 
   useEffect(() => {
-    // Detect scroll direction
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        // Scrolling down: hide header
         setIsVisible(false);
       } else {
-        // Scrolling up: show header
         setIsVisible(true);
       }
       setLastScrollY(window.scrollY);
     };
 
-    // Add the scroll event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component is unmounted to avoid unnecessary executions
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -76,9 +71,7 @@ export default function MainNavigation({ setPage }) {
             >
               My Favorites
               <span className={classes.badge}>
-                {JSON.parse(localStorage.getItem("favorites"))?.length
-                  ? JSON.parse(localStorage.getItem("favorites"))?.length
-                  : 0}
+                {favorites.length || 0} {/* Display the count of favorites */}
               </span>
             </Link>
           </li>

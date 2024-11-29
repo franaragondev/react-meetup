@@ -1,6 +1,7 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MeetupItem from "./MeetupItem";
+import { FavoritesProvider } from "../../contexts/FavoritesContext"; // Import the provider to wrap the component
 
 // Mocking localStorage before each test
 beforeEach(() => {
@@ -14,6 +15,15 @@ beforeEach(() => {
   });
 });
 
+// Helper function to render MeetupItem with FavoritesContext
+const renderWithFavoritesContext = (item) => {
+  return render(
+    <FavoritesProvider>
+      <MeetupItem item={item} />
+    </FavoritesProvider>
+  );
+};
+
 test("renders MeetupItem without crashing", () => {
   const mockItem = {
     id: "1",
@@ -23,7 +33,7 @@ test("renders MeetupItem without crashing", () => {
     address: "Test Address",
   };
 
-  render(<MeetupItem item={mockItem} />);
+  renderWithFavoritesContext(mockItem);
 
   // Verifies that the title and description are in the document
   expect(screen.getByText("Test Meetup")).toBeInTheDocument();
@@ -39,7 +49,7 @@ test("displays correct title and description", () => {
     address: "Test Address",
   };
 
-  render(<MeetupItem item={mockItem} />);
+  renderWithFavoritesContext(mockItem);
 
   // Verifies that the title and description are in the document
   expect(screen.getByText("Test Meetup")).toBeInTheDocument();
@@ -55,7 +65,7 @@ test("toggles favorite status and updates localStorage", () => {
     address: "Test Address",
   };
 
-  render(<MeetupItem item={mockItem} />);
+  renderWithFavoritesContext(mockItem);
 
   // Verifies that the button says "Add to favorites" by default
   const button = screen.getByRole("button");

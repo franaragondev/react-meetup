@@ -1,31 +1,16 @@
-import { useState } from "react";
+import { useFavorites } from "../../contexts/FavoritesContext"; // Import the context
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
 
 export default function MeetupItem({ item }) {
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites")) || []
-  );
-
+  const { favorites, addFavorite, removeFavorite } = useFavorites(); // Access the context
   const isFavorite = favorites.some((favorite) => favorite.id === item.id);
 
   const toggleFavoriteHandler = () => {
-    let updatedFavorites;
-
     if (isFavorite) {
-      updatedFavorites = favorites.filter(
-        (favorite) => favorite.id !== item.id
-      );
+      removeFavorite(item); // Remove from favorites using context
     } else {
-      updatedFavorites = [...favorites, item];
-    }
-
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-
-    // Only reload the page if we are not in a test environment
-    if (typeof window !== "undefined" && process.env.NODE_ENV !== "test") {
-      window.location.reload();
+      addFavorite(item); // Add to favorites using context
     }
   };
 
