@@ -33,7 +33,7 @@ The project includes the following core functionalities:
 The project uses the following technologies and libraries:
 
 - **React (v18.3.1)**: Core framework for building the UI.
-- **React Router DOM (v7.0.1)**: Routing and navigation.
+- **React Router DOM (v6.28.0)**: Routing and navigation.
 
 <a id="installation-setup"></a>
 ## Installation and Setup
