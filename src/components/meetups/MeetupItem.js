@@ -13,18 +13,20 @@ export default function MeetupItem({ item }) {
     let updatedFavorites;
 
     if (isFavorite) {
-      // Remove from favorites
       updatedFavorites = favorites.filter(
         (favorite) => favorite.id !== item.id
       );
     } else {
-      // Add to favorites
       updatedFavorites = [...favorites, item];
     }
 
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    window.location.reload();
+
+    // Only reload the page if we are not in a test environment
+    if (typeof window !== "undefined" && process.env.NODE_ENV !== "test") {
+      window.location.reload();
+    }
   };
 
   return (
