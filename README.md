@@ -23,6 +23,9 @@ The project includes the following core functionalities:
 
 3. **Favorites Toggle Functionality**:
    - The project now includes functionality to add and remove meetups from the user's favorites list. The state of favorites is stored in `localStorage`, ensuring persistence even after page reloads. The badge in the header dynamically updates to reflect the number of favorites in real-time, providing a seamless experience for the user.
+  
+4. **Unit Tests for MeetupItem Component**:
+   - Unit tests have been implemented for the MeetupItem component, focusing on verifying its behavior. These tests include ensuring the correct rendering of titles and descriptions, as well as testing the functionality of adding/removing meetups from the favorites list. The state of favorites is mocked using localStorage, and the button functionality is tested to ensure the expected behavior, such as toggling the button text and updating localStorage accordingly.
 
 <a id="tech-stack"></a>
 ## Technology Stack
