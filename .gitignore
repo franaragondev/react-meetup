@@ -1,0 +1,8 @@
+# Node modules
+node_modules/
+
+# VS Code directories and settings
+.vscode/
+
+# macOS files
+.DS_Store
