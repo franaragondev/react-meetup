@@ -19,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AllMeetupsPage />} />
             {/* All Meetups page */}
-            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/favourites" element={<FavoritesPage />} />
             {/* Favorites page */}
             <Route path="/create" element={<NewMeetupsPage />} />
             {/* New Meetup page */}

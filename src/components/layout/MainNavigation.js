@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   ALL_MEETUP_PAGE,
   FAVORITES_PAGE,
@@ -7,8 +8,38 @@ import {
 import classes from "./MainNavigation.module.css";
 
 export default function MainNavigation({ setPage }) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    // Detect scroll direction
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down: hide header
+        setIsVisible(false);
+      } else {
+        // Scrolling up: show header
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    // Add the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component is unmounted to avoid unnecessary executions
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <header className={classes.header} data-test="navigation-header">
+    <header
+      className={`${classes.header} ${
+        isVisible ? classes.visible : classes.hidden
+      }`}
+      data-test="navigation-header"
+    >
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
