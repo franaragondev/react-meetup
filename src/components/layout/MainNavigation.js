@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   ALL_MEETUP_PAGE,
   FAVORITES_PAGE,
@@ -10,6 +11,8 @@ import classes from "./MainNavigation.module.css";
 export default function MainNavigation({ setPage }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const location = useLocation(); // Get actual location
 
   useEffect(() => {
     // Detect scroll direction
@@ -44,25 +47,40 @@ export default function MainNavigation({ setPage }) {
       <nav>
         <ul>
           <li>
-            <a href="/" onClick={() => setPage(ALL_MEETUP_PAGE)}>
+            <Link
+              to="/"
+              className={location.pathname === "/" ? classes.active : ""}
+              onClick={() => setPage(ALL_MEETUP_PAGE)}
+            >
               All Meetups
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a href="/create" onClick={() => setPage(NEW_MEETUP_PAGE)}>
+            <Link
+              to="/create"
+              className={location.pathname === "/create" ? classes.active : ""}
+              onClick={() => setPage(NEW_MEETUP_PAGE)}
+            >
               Add New Meetup
-            </a>
+            </Link>
           </li>
+
           <li>
-            <a href="/favourites" onClick={() => setPage(FAVORITES_PAGE)}>
+            <Link
+              to="/favourites"
+              className={
+                location.pathname === "/favourites" ? classes.active : ""
+              }
+              onClick={() => setPage(FAVORITES_PAGE)}
+            >
               My Favorites
               <span className={classes.badge}>
                 {JSON.parse(localStorage.getItem("favorites"))?.length
                   ? JSON.parse(localStorage.getItem("favorites"))?.length
                   : 0}
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
