@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
+import { useFavorites } from "../contexts/FavoritesContext";
 import MeetupItem from "../components/meetups/MeetupItem";
 import classes from "./../components/meetups/MeetupList.module.css";
 
 export default function FavoritesPage() {
-  const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, []);
+  // Use the custom hook to get the favorites list from the context
+  const { favorites } = useFavorites();
 
   return (
     <section>
