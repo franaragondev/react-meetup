@@ -13,7 +13,7 @@ import Layout from "./components/layout/Layout";
 function App() {
   return (
     <Router>
-      <div data-test="app">
+      <div data-testid="app">
         <MainNavigation />
         <Layout>
           <Routes>
