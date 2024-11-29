@@ -11,9 +11,15 @@ This repository contains the react-meetup project, developed as part of a techni
 
 ## Table of Contents
 
+- [Theoretical Part](#theorical-part)
 - [Features](#features)
 - [Technology Stack](#tech-stack)
 - [Installation and Setup](#installation-setup)
+
+<a id="theorical-part"></a>
+## Theoretical Part
+
+The file ParteTeorica.js located at the root of the repository contains the answers to the theoretical questions related to the technical test. This file addresses several issues found in the implementation, including code design principles, proposed solutions, and a detailed analysis of potential improvements in the code structure.
 
 <a id="features"></a>
 ## Features
