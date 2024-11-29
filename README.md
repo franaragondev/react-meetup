@@ -30,6 +30,9 @@ The project includes the following core functionalities:
 5. **Active Page Highlight in Header**:
    - The header navigation now highlights the active page based on the current route. The active link is visually distinguished with a different color to provide users with a clear indication of their current page. This is done using `React Router`'s `Link` components and the `useLocation` hook.
 
+6. **State Management**:
+   - Various application states (e.g., favorites, header visibility) are managed using React's `useState` and `useEffect` hooks, ensuring that the app responds dynamically to user interactions.
+
 <a id="tech-stack"></a>
 ## Technology Stack
 
