@@ -21,6 +21,9 @@ The project includes the following core functionalities:
 2. **Navigation with SEO-Friendly URLs**:
    - The header includes navigation links that reflect the corresponding pages in the URL, ensuring proper SEO practices. For example, the Favorites page is now accessible through `/favourites`.
 
+3. **Favorites Toggle Functionality**:
+   - The project now includes functionality to add and remove meetups from the user's favorites list. The state of favorites is stored in `localStorage`, ensuring persistence even after page reloads. The badge in the header dynamically updates to reflect the number of favorites in real-time, providing a seamless experience for the user.
+
 <a id="tech-stack"></a>
 ## Technology Stack
 
