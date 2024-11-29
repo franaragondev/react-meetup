@@ -1,5 +1,10 @@
 # react-meetup - FRAN ARAGÓN
 
+## Deployment
+
+You can view the live deployment of this project at the following link:  
+[Live Demo](https://react-meetup-hazel.vercel.app/)
+
 ## Overview
 
 This repository contains the react-meetup project, developed as part of a technical test for AXPE Consulting. The web application allows users to create, view, and mark meetups as favourites. This README provides an overview of the project structure, functionalities, and setup instructions.
