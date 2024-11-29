@@ -26,6 +26,9 @@ The project includes the following core functionalities:
   
 4. **Unit Tests for MeetupItem Component**:
    - Unit tests have been implemented for the MeetupItem component, focusing on verifying its behavior. These tests include ensuring the correct rendering of titles and descriptions, as well as testing the functionality of adding/removing meetups from the favorites list. The state of favorites is mocked using localStorage, and the button functionality is tested to ensure the expected behavior, such as toggling the button text and updating localStorage accordingly.
+     
+5. **Active Page Highlight in Header**:
+   - The header navigation now highlights the active page based on the current route. The active link is visually distinguished with a different color to provide users with a clear indication of their current page. This is done using `React Router`'s `Link` components and the `useLocation` hook.
 
 <a id="tech-stack"></a>
 ## Technology Stack
