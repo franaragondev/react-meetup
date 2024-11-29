@@ -57,7 +57,11 @@ export default function MainNavigation({ setPage }) {
           <li>
             <a href="/favourites" onClick={() => setPage(FAVORITES_PAGE)}>
               My Favorites
-              <span className={classes.badge}>{0}</span>
+              <span className={classes.badge}>
+                {JSON.parse(localStorage.getItem("favorites"))?.length
+                  ? JSON.parse(localStorage.getItem("favorites"))?.length
+                  : 0}
+              </span>
             </a>
           </li>
         </ul>

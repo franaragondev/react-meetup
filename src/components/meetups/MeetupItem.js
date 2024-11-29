@@ -1,17 +1,34 @@
-import { useFetch } from "./../../util-hooks/useFetch";
+import { useState } from "react";
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
 
-export default function MeetupItem() {
-  const { data } = useFetch({
-    url: "/data.json",
-  });
+export default function MeetupItem({ item }) {
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
-  if (!data) return <p>Loading...</p>;
-  let [item] = data;
+  const isFavorite = favorites.some((favorite) => favorite.id === item.id);
+
+  const toggleFavoriteHandler = () => {
+    let updatedFavorites;
+
+    if (isFavorite) {
+      // Remove from favorites
+      updatedFavorites = favorites.filter(
+        (favorite) => favorite.id !== item.id
+      );
+    } else {
+      // Add to favorites
+      updatedFavorites = [...favorites, item];
+    }
+
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    window.location.reload();
+  };
 
   return (
-    <li className={classes.item} data-test='meet-up-item'>
+    <li className={classes.item} data-test="meet-up-item">
       <Card>
         <div className={classes.image}>
           <img src={item.image} alt={item.title} />
@@ -22,7 +39,9 @@ export default function MeetupItem() {
           <p>{item.description}</p>
         </div>
         <div className={classes.actions}>
-          <button>Add to favorites</button>
+          <button onClick={toggleFavoriteHandler}>
+            {isFavorite ? "Remove from favorites" : "Add to favorites"}
+          </button>
         </div>
       </Card>
     </li>
