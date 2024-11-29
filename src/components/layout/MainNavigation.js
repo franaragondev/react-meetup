@@ -41,7 +41,7 @@ export default function MainNavigation({ setPage }) {
       className={`${classes.header} ${
         isVisible ? classes.visible : classes.hidden
       }`}
-      data-test="navigation-header"
+      data-testid="main-navigation"
     >
       <div className={classes.logo}>React Meetups</div>
       <nav>

@@ -1,30 +1,20 @@
-/* eslint-disable testing-library/await-async-query */
-/* eslint-disable testing-library/no-debugging-utils */
-import { shallow, mount } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import App from "./App";
-import MainNavigation from "./components/layout/MainNavigation";
-import Layout from "./components/layout/Layout";
-
-/**
- * Factory funcion to create a ShallowWrapper for the App component
- * @function setup
- * @returns {ShallowWrapper}
- */
-const setup = () => shallow(<App />);
-const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test]='${val}'`);
 
 test("renders App without crashing", () => {
-  const wrapper = setup();
-  //console.log(wrapper.debug());
-  expect(wrapper.exists()).toBe(true);
+  render(<App />);
+  const appElement = screen.getByTestId("app");
+  expect(appElement).toBeInTheDocument();
 });
 
 test("renders the navigation component", () => {
-  const wrapper = setup();
-  expect(wrapper.find(MainNavigation).length).toBe(1);
+  render(<App />);
+  const navElement = screen.getByTestId("main-navigation");
+  expect(navElement).toBeInTheDocument();
 });
 
 test("renders the Layout component", () => {
-  const wrapper = setup();
-  expect(wrapper.find(Layout).length).toBe(1);
+  render(<App />);
+  const layoutElement = screen.getByTestId("layout");
+  expect(layoutElement).toBeInTheDocument();
 });
